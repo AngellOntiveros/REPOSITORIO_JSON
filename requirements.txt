@@ -1,0 +1,14 @@
+streamlit
+opencv-python
+numpy
+Pillow
+gdown
+plotly
+pandas
+ultralytics
+torch
+torchvision
+scikit-learn
+scikit-image
+opencv-python-headless
+json
