@@ -432,7 +432,7 @@ def main():
                 frutas_detectadas = [d for d in st.session_state.detecciones_historial if d.get('tipo') == 'fruta']
                 if frutas_detectadas:
                     # Mostrar gráfico
-                    fig = crear_grafico_frutas(frutas_detectadas[-10:])  # Últimas 10
+                    fig = crear_grafico_frutas(frutas_detectadas)  # Últimas 10 [-10:]
                     if fig:
                         st.plotly_chart(fig, use_container_width=True, key="grafico_frutas")
     
@@ -555,5 +555,6 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
