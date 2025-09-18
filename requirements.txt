@@ -1,5 +1,5 @@
 streamlit
-opencv-python
+opencv-python-headless
 numpy
 Pillow
 gdown
@@ -10,4 +10,5 @@ torch
 torchvision
 scikit-learn
 scikit-image
-opencv-python-headless
+opencv-python
+
