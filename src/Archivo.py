@@ -364,25 +364,19 @@ def main():
                     st.error(f"Error cargando imagen: {str(e)}")
         
         elif metodo == "📷 Cámara web":
-            col1, col2, col3 = st.columns([1, 1, 1])
-            with col2:
-                if st.button("📸 Capturar desde cámara", type="primary", key="btn_camara"):
-                    try:
-                        cap = cv2.VideoCapture(0)
-                        cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-                        cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
-                        
-                        ret, frame = cap.read()
-                        cap.release()
-                        
-                        if ret:
-                            st.session_state.imagen_actual = frame
-                            imagen_cargada = True
-                            st.success("✅ Imagen capturada correctamente")
-                        else:
-                            st.error("❌ No se pudo acceder a la cámara")
-                    except Exception as e:
-                        st.error(f"❌ Error de cámara: {str(e)}")
+            # Usar widget de cámara de Streamlit (funciona en móvil)
+            st.info("📱 Este método funciona perfectamente en dispositivos móviles")
+            foto = st.camera_input("Toma una foto", key="camera_input")
+            
+            if foto is not None:
+                try:
+                    imagen_pil = Image.open(foto)
+                    imagen = cv2.cvtColor(np.array(imagen_pil), cv2.COLOR_RGB2BGR)
+                    st.session_state.imagen_actual = imagen
+                    imagen_cargada = True
+                    st.success("✅ Imagen capturada correctamente")
+                except Exception as e:
+                    st.error(f"❌ Error procesando imagen: {str(e)}")
         
         elif metodo == "🎯 Imagen de ejemplo":
             col1, col2, col3 = st.columns([1, 1, 1])
@@ -555,6 +549,7 @@ def main():
 if __name__ == "__main__":
 
     main()
+
 
 
 
